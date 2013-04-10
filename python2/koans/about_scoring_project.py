@@ -34,9 +34,29 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
-    # You need to write this method
-    pass
+    score = 0
 
+    import collections
+    occurrences = collections.Counter(dice)
+
+    # three ones are worth 1000
+    while (occurrences[1] >= 3):
+        occurrences[1] -= 3
+        score += 1000
+
+    for number in occurrences:
+        # three of the same numbers are worth the number times 100
+        while (occurrences[number] >= 3):
+            occurrences[number] -= 3
+            score += number * 100
+
+        # any left over ones are worth 100 each
+        if number == 1: score += occurrences[number] * 100
+
+        # fives are worth 50 each
+        if number == 5: score += occurrences[number] * 50
+
+    return score
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
