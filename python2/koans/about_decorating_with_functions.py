@@ -11,11 +11,11 @@ class AboutDecoratingWithFunctions(Koan):
 
     @addcowbell
     def mediocre_song(self):
-        return "o/~ We all live in a broken submarine o/~"
+        return "o/~ We all live in a yellow submarine o/~"
 
     def test_decorators_can_modify_a_function(self):
-        self.assertMatch(__, self.mediocre_song())
-        self.assertEqual(__, self.mediocre_song.wow_factor)
+        self.assertMatch("o/~ We all live in a yellow submarine o/~", self.mediocre_song())
+        self.assertEqual("COWBELL BABY!", self.mediocre_song.wow_factor)
 
     # ------------------------------------------------------------------
 
@@ -29,4 +29,4 @@ class AboutDecoratingWithFunctions(Koan):
         return name
 
     def test_decorators_can_change_a_function_output(self):
-        self.assertEqual(__, self.render_tag('llama'))
+        self.assertEqual("<llama/>", self.render_tag('llama'))
